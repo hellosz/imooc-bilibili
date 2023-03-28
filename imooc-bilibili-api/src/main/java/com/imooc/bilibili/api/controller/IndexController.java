@@ -28,7 +28,6 @@ public class IndexController {
     }
 
     @GetMapping("/user")
-    @ResponseBody
     public UserDao user(@RequestParam(name="id") Integer id) {
         // 数据查询
         UserDao userDao = userService.queryById(id);
