@@ -1,6 +1,7 @@
 package com.imooc.bilibili.api.controller;
 
 import com.imooc.bilibili.dao.domain.UserDao;
+import com.imooc.bilibili.dao.exception.BusinessException;
 import com.imooc.bilibili.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,12 @@ public class IndexController {
     UserService userService;
 
     @GetMapping("/index")
-    public String index() {
+    public String index() throws Exception {
+
+        if (true) {
+            throw new Exception("this is exception class");
+        }
+
         return "hello world";
     }
 

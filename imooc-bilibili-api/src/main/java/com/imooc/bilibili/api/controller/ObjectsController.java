@@ -1,6 +1,6 @@
 package com.imooc.bilibili.api.controller;
 
-import org.springframework.http.MediaType;
+import com.imooc.bilibili.dao.common.JsonResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -27,25 +27,26 @@ public class ObjectsController {
     }
 
     @GetMapping("/objects")
-    public Map<Integer, Map<String, Object>> getObjects() {
-        return objMap;
+    public JsonResponse<Map<Integer, Map<String, Object>>> getObjects() {
+        return JsonResponse.success(objMap);
     }
 
     @GetMapping("/objects/{id}")
-    public Map<String, Object> getObject(@PathVariable Integer id) {
-        return objMap.get(id);
+    public JsonResponse<Map<String, Object>> getObject(@PathVariable Integer id) {
+        return JsonResponse.success(objMap.get(id));
     }
 
 
     @DeleteMapping("/objects/{id}")
-    public String delObject(@PathVariable Integer id) {
+    public JsonResponse<Object> delObject(@PathVariable Integer id) {
         objMap.remove(id);
 
-        return "delete key :" + id + " successful";
+        String msg = "delete key :" + id + " successful";
+        return JsonResponse.success(msg, null);
     }
 
     @PostMapping("/objects")
-    public String postObject(@RequestBody Map<String, Object> reqMap) {
+    public JsonResponse<Object> postObject(@RequestBody Map<String, Object> reqMap) {
         // 取当前最大的 ID
         Optional<Integer> max = objMap.keySet().stream()
                 .max(Comparator.comparing(Integer::intValue));
@@ -58,8 +59,7 @@ public class ObjectsController {
             objMap.put(1, reqMap);
         }
 
-        return "save successful";
-
+        return JsonResponse.success();
     }
 
     @PutMapping(value = "/objects")

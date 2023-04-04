@@ -20,7 +20,8 @@
         <springboot.version>2.5.1</springboot.version>
         <mybatis.version>2.3.0</mybatis.version>
         <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
-        <commons-codec.version>1.15</commons-codec.version>
+        <commons-codec.version>1.14</commons-codec.version>
+        <fastjson.version>1.2.78</fastjson.version>
     </properties>
 
     <parent>
@@ -72,6 +73,13 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
+            </dependency>
+
+            <!-- 导入 fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!--            <dependency>-->
